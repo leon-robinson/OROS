@@ -6,7 +6,7 @@ override BOOTLOADER_UEFI_BIN := bootloader-uefi/target/x86_64-unknown-uefi/debug
 all:
 	$(MAKE) ovmf
 
-	cd bootloader-uefi && cargo build
+	cd bootloader-uefi && cargo fmt && cargo build
 
 	rm -f uefi-cd.img
 	dd if=/dev/zero of=uefi-cd.img bs=512 count=2880
