@@ -8,9 +8,10 @@ use uefi_services::println;
 fn main(_handle: Handle, mut system_table: SystemTable<Boot>) -> Status {
     uefi_services::init(&mut system_table).unwrap();
 
+    system_table.stdout().clear().unwrap();
     println!("Hello World!");
 
-    system_table.boot_services().stall(5_000_000);
+    system_table.boot_services().stall(usize::max_value());
 
     Status::SUCCESS
 }

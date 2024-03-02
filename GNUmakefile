@@ -1,7 +1,7 @@
 
 override BOOTLOADER_UEFI_BIN := bootloader-uefi/target/x86_64-unknown-uefi/debug
 
-.PHONY: all clean
+.PHONY: all clean qemu
 
 all:
 	$(MAKE) ovmf
@@ -31,6 +31,9 @@ all:
 ovmf:
 	mkdir -p ovmf
 	cd ovmf && curl -Lo OVMF.fd https://retrage.github.io/edk2-nightly/bin/RELEASEX64_OVMF.fd
+
+qemu: all ovmf
+	qemu-system-x86_64 -enable-kvm -cpu host -m 2G -bios ovmf/OVMF.fd -cdrom OROS.iso -boot d
 
 clean:
 	cd bootloader-uefi && cargo clean
