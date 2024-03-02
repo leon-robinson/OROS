@@ -1,1 +1,10 @@
+# Directory names.
 target/
+
+# Root directory names.
+/ovmf
+
+# Root directory file names.
+/uefi-cd.img
+/OROS.img
+/OROS.iso
